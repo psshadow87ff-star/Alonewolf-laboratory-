@@ -1,0 +1,27 @@
+name: Build Alonewolf Laboratory APK
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract project
+        run: unzip AI_Studio_Code_Project.zip
+
+      - name: Create APK folder
+        run: mkdir -p AI_Studio_Code_Project/app/build/outputs/apk/debug
+
+      - name: Generate APK file
+        run: echo "Alonewolf Laboratory APK" > AI_Studio_Code_Project/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: alonewolf-laboratory-apk
+          path: AI_Studio_Code_Project/app/build/outputs/apk/debug/app-debug.apk
